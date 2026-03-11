@@ -421,8 +421,7 @@ Se aplicó la técnica de prueba de Caja Blanca para ambos bloques de código, c
 // Con '==' creamos un título de segundo nivel (subtítulo).
 == Código a analizar (sintaxis traducida a TypeScript)
 // Usamos bloques de código con acentos graves especificando un lenguaje como ts (TypeScript) para obtener colores y resaltado de la sintaxis.
-```
-```ts
+'''ts
 if(edad >= 18){ // 1
   if(tieneMembresia == true){ // 2
     console.log("Acceso total"); // 3
@@ -435,8 +434,7 @@ if(edad >= 18){ // 1
     console.log("Acceso denegado: menor de edad"); // 7
 }
 // 8 (Fin)
-```
-```typ
+'''
 == A. Grafo de flujo
 
 // Utilizamos el constructor especial '#figure' para envolver algo gráfico en la hoja, lo cual nos permite ponerle una leyenda / texto ilustrativo centrado ('caption') al pie del gráfico.
@@ -553,8 +551,8 @@ Para calcular la complejidad ciclomática $V(G)$ podemos utilizar tres fórmulas
 = Segundo código
 
 == Código a analizar (sintaxis traducida a TypeScript)
-```
-```ts
+
+'''ts
 let suma = 0; // 1
 let i = 0; // 2
 while (i < lista.length) { // 3
@@ -567,8 +565,7 @@ while (i < lista.length) { // 3
     i++; // 8
 }
 return suma; // 9
-```
-```typ
+'''
 == A. Grafo de flujo
 
 #figure(

@@ -349,7 +349,6 @@ Se aplicó la técnica de prueba de Caja Blanca para ambos bloques de código, c
 #set heading(numbering: "1.")
 #set list(indent: 1.5em)
 
-// Auto page size
 #set page(
   width: auto,
   height: auto,
@@ -361,7 +360,6 @@ Se aplicó la técnica de prueba de Caja Blanca para ambos bloques de código, c
 #let instructions = read("media/Examen-practico_IP.pdf", encoding: none)
 #image(instructions, width: auto, height: auto)
 
-// Recover original page settings for the rest of the document
 #set page(
   paper: "us-letter",
   margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
@@ -393,10 +391,8 @@ if(edad >= 18){ // 1
   cetz.canvas({
     import cetz.draw: *
 
-    // Set default styles for nodes
     let node-style = (radius: 0.35, stroke: 0.7pt, fill: white)
 
-    // Define the Nodes
     circle((0, 5), name: "1", ..node-style)
     content("1", [1])
 
@@ -421,11 +417,10 @@ if(edad >= 18){ // 1
     circle((0, -1), name: "8", ..node-style)
     content("8", [8])
 
-    // Define the Edges (Connections)
     line("1", "2", mark: (end: ">"), name: "e12")
     content("e12", [V], anchor: "south-east", padding: 0.1)
 
-    line("1", "7", mark: (end: ">"), stroke: 0pt) // removed visible edge to replace by bezier
+    line("1", "7", mark: (end: ">"), stroke: 0pt)
 
     line("2", "3", mark: (end: ">"), name: "e23")
     content("e23", [V], anchor: "south-east", padding: 0.1)
@@ -519,7 +514,6 @@ return suma; // 9
 
     let node-style = (radius: 0.35, stroke: 0.7pt, fill: white)
 
-    // Agrupamos el nodo 1 y 2 en uno solo (Inicialización) -> Nodo A (1,2)
     circle((0, 6), name: "1", ..node-style)
     content("1", [1,2])
 
@@ -617,5 +611,5 @@ Se aplicó la técnica de prueba de Caja Blanca para ambos bloques de código, c
 
 #pagebreak()
 
-= Código usado para construir este documento
+= Código usado para construir este documento (easter egg! [no voy a caer en la recursión])
 ```

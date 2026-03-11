@@ -115,8 +115,7 @@ if(edad >= 18){ // 1
     line("1", "2", mark: (end: ">"), name: "e12")
     content("e12", [V], anchor: "south-east", padding: 0.1)
 
-    line("1", "7", mark: (end: ">"), name: "e17")
-    content("e17", [F], anchor: "south-west", padding: 0.1)
+    line("1", "7", mark: (end: ">"), stroke: 0pt) // removed visible edge to replace by bezier
 
     line("2", "3", mark: (end: ">"), name: "e23")
     content("e23", [V], anchor: "south-east", padding: 0.1)
@@ -130,10 +129,14 @@ if(edad >= 18){ // 1
     line("4", "6", mark: (end: ">"), name: "e46")
     content("e46", [F], anchor: "south-west", padding: 0.1)
 
-    line("3", "8", mark: (end: ">"))
+    line("3.south", (-3, -1), "8.west", mark: (end: ">"))
+    content((-3.1, 0.5), [V], anchor: "east", padding: 0.1)
+
     line("5", "8", mark: (end: ">"))
     line("6", "8", mark: (end: ">"))
-    line("7", "8", mark: (end: ">"))
+
+    line("1.east", (1.5, 5), "7.north", mark: (end: ">"))
+    content((1.6, 4.5), [F], anchor: "west", padding: 0.1)
   }),
   caption: [Grafo del primer código],
 )<primer-grafo>
@@ -171,10 +174,10 @@ Para calcular la complejidad ciclomática $V(G)$ podemos utilizar tres fórmulas
   columns: (auto, auto, auto, auto, auto, auto),
   align: center,
   [*Camino*], [*`edad`*], [*`tieneMembresia`*], [*`codigoPromo`*], [*Salida Esperada*], [*Salida Real*],
-  [1], [17], [Falso], ["-"], ["Acceso denegado: menor de edad"], [],
-  [2], [20], [Verdadero], ["-"], ["Acceso total"], [],
-  [3], [25], [Falso], ["VIP"], ["Acceso invitado VIP"], [],
-  [4], [30], [Falso], ["REGULAR"], ["Acceso denegado: requiere membresía"], [],
+  [1], [17], [Falso], ["-"], ["Acceso denegado: menor de edad"], ["Acceso denegado: menor de edad"],
+  [2], [20], [Verdadero], ["-"], ["Acceso total"], ["Acceso total"],
+  [3], [25], [Falso], ["VIP"], ["Acceso invitado VIP"], ["Acceso invitado VIP"],
+  [4], [30], [Falso], ["REGULAR"], ["Acceso denegado: requiere membresía"], ["Acceso denegado: requiere membresía"],
 )
 
 #pagebreak()
@@ -237,9 +240,8 @@ return suma; // 9
     line("3", "4", mark: (end: ">"), name: "e34")
     content("e34", [V], anchor: "east", padding: 0.1)
 
-    line("3", "9", mark: (end: ">"), name: "e39")
-    bezier("3.east", "9.north", (2, 3.5), mark: (end: ">"), name: "e39")
-    content("e39", [F], anchor: "west", padding: 0.1)
+    line("3.east", (3.5, 4.5), (3.5, -1.5), "9.east", mark: (end: ">"))
+    content((3.6, 3.5), [F], anchor: "west", padding: 0.1)
 
     line("4", "5", mark: (end: ">"), name: "e45")
     content("e45", [V], anchor: "south-west", padding: 0.1)
@@ -258,7 +260,7 @@ return suma; // 9
     line("7", "8", mark: (end: ">"))
 
     // Bucle (Loop back)
-    bezier("8.west", "3.west", (-2.5, 1.5), mark: (end: ">"))
+    line("8.west", (-2.5, -1.5), (-2.5, 4.5), "3.west", mark: (end: ">"))
   }),
   caption: [Grafo del segundo código],
 )<segundo-grafo>
@@ -292,10 +294,10 @@ Considerando los nodos de nuestro grafo:
   columns: (auto, auto, auto, auto, auto),
   align: center,
   [*Camino*], [*`lista`*], [*Condición que cumple*], [*Salida Esperada*], [*Salida Real*],
-  [1], [`[]`], [Lista vacía (falla `i < lista.length` inicial)], [`0`], [],
-  [2], [`[-1]`], [Encuentra número negativo, hace `break`], [`0`], [],
-  [3], [`[1]`], [Itera número impar (no lo suma), termina], [`0`], [],
-  [4], [`[2]`], [Itera número par (lo suma), termina], [`2`], [],
+  [1], [`[]`], [Lista vacía (falla `i < lista.length` inicial)], [`0`], [`0`],
+  [2], [`[-1]`], [Encuentra número negativo, hace `break`], [`0`], [`0`],
+  [3], [`[1]`], [Itera número impar (no lo suma), termina], [`0`], [`0`],
+  [4], [`[2]`], [Itera número par (lo suma), termina], [`2`], [`2`],
 )
 
 = Conclusión
@@ -423,8 +425,7 @@ if(edad >= 18){ // 1
     line("1", "2", mark: (end: ">"), name: "e12")
     content("e12", [V], anchor: "south-east", padding: 0.1)
 
-    line("1", "7", mark: (end: ">"), name: "e17")
-    content("e17", [F], anchor: "south-west", padding: 0.1)
+    line("1", "7", mark: (end: ">"), stroke: 0pt) // removed visible edge to replace by bezier
 
     line("2", "3", mark: (end: ">"), name: "e23")
     content("e23", [V], anchor: "south-east", padding: 0.1)
@@ -438,10 +439,14 @@ if(edad >= 18){ // 1
     line("4", "6", mark: (end: ">"), name: "e46")
     content("e46", [F], anchor: "south-west", padding: 0.1)
 
-    line("3", "8", mark: (end: ">"))
+    line("3.south", (-3, -1), "8.west", mark: (end: ">"))
+    content((-3.1, 0.5), [V], anchor: "east", padding: 0.1)
+
     line("5", "8", mark: (end: ">"))
     line("6", "8", mark: (end: ">"))
-    line("7", "8", mark: (end: ">"))
+
+    line("1.east", (1.5, 5), "7.north", mark: (end: ">"))
+    content((1.6, 4.5), [F], anchor: "west", padding: 0.1)
   }),
   caption: [Grafo del primer código],
 )<primer-grafo>
@@ -479,10 +484,10 @@ Para calcular la complejidad ciclomática $V(G)$ podemos utilizar tres fórmulas
   columns: (auto, auto, auto, auto, auto, auto),
   align: center,
   [*Camino*], [*`edad`*], [*`tieneMembresia`*], [*`codigoPromo`*], [*Salida Esperada*], [*Salida Real*],
-  [1], [17], [Falso], ["-"], ["Acceso denegado: menor de edad"], [],
-  [2], [20], [Verdadero], ["-"], ["Acceso total"], [],
-  [3], [25], [Falso], ["VIP"], ["Acceso invitado VIP"], [],
-  [4], [30], [Falso], ["REGULAR"], ["Acceso denegado: requiere membresía"], []
+  [1], [17], [Falso], ["-"], ["Acceso denegado: menor de edad"], ["Acceso denegado: menor de edad"],
+  [2], [20], [Verdadero], ["-"], ["Acceso total"], ["Acceso total"],
+  [3], [25], [Falso], ["VIP"], ["Acceso invitado VIP"], ["Acceso invitado VIP"],
+  [4], [30], [Falso], ["REGULAR"], ["Acceso denegado: requiere membresía"], ["Acceso denegado: requiere membresía"],
 )
 
 #pagebreak()
@@ -545,9 +550,8 @@ return suma; // 9
     line("3", "4", mark: (end: ">"), name: "e34")
     content("e34", [V], anchor: "east", padding: 0.1)
 
-    line("3", "9", mark: (end: ">"), name: "e39")
-    bezier("3.east", "9.north", (2, 3.5), mark: (end: ">"), name: "e39")
-    content("e39", [F], anchor: "west", padding: 0.1)
+    line("3.east", (3.5, 4.5), (3.5, -1.5), "9.east", mark: (end: ">"))
+    content((3.6, 3.5), [F], anchor: "west", padding: 0.1)
 
     line("4", "5", mark: (end: ">"), name: "e45")
     content("e45", [V], anchor: "south-west", padding: 0.1)
@@ -566,7 +570,7 @@ return suma; // 9
     line("7", "8", mark: (end: ">"))
 
     // Bucle (Loop back)
-    bezier("8.west", "3.west", (-2.5, 1.5), mark: (end: ">"))
+    line("8.west", (-2.5, -1.5), (-2.5, 4.5), "3.west", mark: (end: ">"))
 
   }),
   caption: [Grafo del segundo código],
@@ -601,10 +605,10 @@ Considerando los nodos de nuestro grafo:
   columns: (auto, auto, auto, auto, auto),
   align: center,
   [*Camino*], [*`lista`*], [*Condición que cumple*], [*Salida Esperada*], [*Salida Real*],
-  [1], [`[]`], [Lista vacía (falla `i < lista.length` inicial)], [`0`], [],
-  [2], [`[-1]`], [Encuentra número negativo, hace `break`], [`0`], [],
-  [3], [`[1]`], [Itera número impar (no lo suma), termina], [`0`], [],
-  [4], [`[2]`], [Itera número par (lo suma), termina], [`2`], []
+  [1], [`[]`], [Lista vacía (falla `i < lista.length` inicial)], [`0`], [`0`],
+  [2], [`[-1]`], [Encuentra número negativo, hace `break`], [`0`], [`0`],
+  [3], [`[1]`], [Itera número impar (no lo suma), termina], [`0`], [`0`],
+  [4], [`[2]`], [Itera número par (lo suma), termina], [`2`], [`2`],
 )
 
 = Conclusión

@@ -598,7 +598,6 @@ return suma; // 9
     circle((3, -1.5), name: "9", ..node-style)
     content("9", [9])
 
-    // Edges
     line("1", "3", mark: (end: ">"))
 
     line("3", "4", mark: (end: ">"), name: "e34")
@@ -623,7 +622,6 @@ return suma; // 9
 
     line("7", "8", mark: (end: ">"))
 
-    // Bucle (Loop back)
     line("8.west", (-2.5, -1.5), (-2.5, 4.5), "3.west", mark: (end: ">"))
 
   }),

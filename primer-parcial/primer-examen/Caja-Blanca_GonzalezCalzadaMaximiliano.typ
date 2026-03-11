@@ -1,6 +1,36 @@
 #import "@preview/cetz:0.4.2"
 #import "portada-template.typ": portada
 
+#show raw: set text(
+  font: "JetBrainsMono NFM",
+  weight: "medium",
+  size: 1em,
+)
+
+// Importamos la librería codly para numeración automática de líneas
+#import "@preview/codly:1.3.0": *
+#show: codly-init.with()
+
+#codly(
+  languages: (
+    ts: (name: "TypeScript", icon: "", color: rgb("#3178C6")),
+    typ: (name: "Typst", icon: "", color: rgb("#239DAD")),
+  ),
+  number-format: n => str(n),
+)
+
+#set text(
+  font: "ITC Avant Garde Gothic",
+  lang: "es",
+  weight: "semibold",
+)
+
+#set page(
+  paper: "us-letter",
+  margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
+  numbering: "1",
+)
+
 #let integrantes = (
   "Gonzalez Calzada Maximiliano"
 )
@@ -20,18 +50,6 @@
   integrantes,
   "González Arroyo Lilia",
   "10 de Marzo de 2026",
-)
-
-#set text(
-  font: "ITC Avant Garde Gothic",
-  lang: "es",
-  weight: "semibold",
-)
-
-#set page(
-  paper: "us-letter",
-  margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
-  numbering: "1",
 )
 
 #pagebreak()
@@ -312,6 +330,40 @@ Se aplicó la técnica de prueba de Caja Blanca para ambos bloques de código, c
 #import "@preview/cetz:0.4.2"
 #import "portada-template.typ": portada
 
+// Las funciones '#set' cambian la configuración global de un elemento.
+// En este caso, cambiamos la fuente, el grosor y el tamaño del texto que se muestra en líneas de código.
+#show raw: set text(
+  font: "JetBrainsMono NFM",
+  weight: "medium",
+  size: 1em,
+)
+// Importamos la librería codly para numeración automática de líneas.
+#import "@preview/codly:1.2.0": *
+#show: codly-init.with()
+
+// Realizamos la configuración de codly para que pueda mostrar el código con los colores y el número de línea.
+#codly(
+  languages: (
+    ts: (name: "TypeScript", icon: "", color: rgb("#3178C6")),
+    typ: (name: "Typst", icon: "", color: rgb("#239DAD")),
+  ),
+  number-format: n => str(n),
+)
+
+// Aquí establecemos la fuente principal, el idioma (es) y el grosor del texto para todo el documento.
+#set text(
+  font: "ITC Avant Garde Gothic",
+  lang: "es",
+  weight: "semibold",
+)
+
+// Configuramos el tamaño de la página (tamaño carta), definimos los márgenes de 3cm y 2.5cm acordes a formato estándar, y activamos el número de página.
+#set page(
+  paper: "us-letter",
+  margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
+  numbering: "1",
+)
+
 // Definimos una variable que contiene un arreglo con los nombres de los integrantes del equipo.
 #let integrantes = (
   "Gonzalez Calzada Maximiliano"
@@ -334,24 +386,9 @@ Se aplicó la técnica de prueba de Caja Blanca para ambos bloques de código, c
   "González Arroyo Lilia",
   "10 de Marzo de 2026",
 )
-
-// Las funciones '#set' cambian la configuración global de un elemento.
-// Aquí establecemos la fuente principal, el idioma (es) y el grosor del texto para todo el documento.
-#set text(
-  font: "ITC Avant Garde Gothic",
-  lang: "es",
-  weight: "semibold",
-)
-
-// Configuramos el tamaño de la página (tamaño carta), definimos los márgenes de 3cm y 2.5cm acordes a formato estándar, y activamos el número de página.
-#set page(
-  paper: "us-letter",
-  margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
-  numbering: "1",
-)
-
 // Obliga a insertar un salto hacia la página siguiente.
 #pagebreak()
+
 // Ajustamos las reglas de los párrafos (par): 'justify: true' para texto justificado y 'leading' ajusta el interlineado.
 // También configuramos listas indexadas y la forma de la numeración de títulos.
 #set par(justify: true, leading: 1.4em)
@@ -411,7 +448,7 @@ if(edad >= 18){ // 1
 // Declaramos un estilo visual base que ocuparemos más adelante repetidas veces (el radio del círculo, el grosor del borde, y fondo blanco).
     let node-style = (radius: 0.35, stroke: 0.7pt, fill: white)
 
-// Dibujamos el primer círculo en la coordenada matemática (x: 0, y: 5) de nuestro lienzo. Al ponerle nombre (name: "1") luego podremos referenciarlo desde las flechas y textos. 
+// Dibujamos el primer círculo en la coordenada matemática (x: 0, y: 5) de nuestro lienzo. Al ponerle nombre (name: "1") luego podremos referenciarlo desde las flechas y textos.
     // Con '..node-style' desempacamos/heredamos la configuración visual que escribimos arriba.
     circle((0, 5), name: "1", ..node-style)
 // Escribimos el contenido textual estricto sobre lo que se haya etiquetado como "1" hace un momento, en este caso, dibujando el [1].
@@ -499,7 +536,7 @@ Para calcular la complejidad ciclomática $V(G)$ podemos utilizar tres fórmulas
 
 == D. Casos de Prueba
 
-// El componente '#table' agrupa las cosas en celdas matriciales. Definiendo las columnas como vector (auto, auto...) estipularemos cuántas colécciones de celdas queremos y que se auto-ajusten su ancho. 
+// El componente '#table' agrupa las cosas en celdas matriciales. Definiendo las columnas como vector (auto, auto...) estipularemos cuántas colécciones de celdas queremos y que se auto-ajusten su ancho.
 // Luego, por simple orden de tabulado vertical pasamos las celdas una a una como [Valor] por corchetes.
 #table(
   columns: (auto, auto, auto, auto, auto, auto),

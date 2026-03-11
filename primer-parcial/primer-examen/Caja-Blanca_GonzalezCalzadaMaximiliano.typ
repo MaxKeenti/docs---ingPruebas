@@ -308,13 +308,16 @@ Se aplicó la técnica de prueba de Caja Blanca para ambos bloques de código, c
 
 = Código usado para construir este documento
 ```typ
+// Importamos la librería 'cetz' (Canvas para Typst) que nos permite dibujar formas y grafos.
 #import "@preview/cetz:0.4.2"
 #import "portada-template.typ": portada
 
+// Definimos una variable que contiene un arreglo con los nombres de los integrantes del equipo.
 #let integrantes = (
   "Gonzalez Calzada Maximiliano"
 )
 
+// Llamamos a la función 'portada' pasándole todos los datos requeridos (clase, boleta, nombres, etc.) para generar la página inicial.
 #portada(
   "UNIDAD DE APRENDIZAJE",
   "EXAMEN",
@@ -332,32 +335,42 @@ Se aplicó la técnica de prueba de Caja Blanca para ambos bloques de código, c
   "10 de Marzo de 2026",
 )
 
+// Las funciones '#set' cambian la configuración global de un elemento.
+// Aquí establecemos la fuente principal, el idioma (es) y el grosor del texto para todo el documento.
 #set text(
   font: "ITC Avant Garde Gothic",
   lang: "es",
   weight: "semibold",
 )
 
+// Configuramos el tamaño de la página (tamaño carta), definimos los márgenes de 3cm y 2.5cm acordes a formato estándar, y activamos el número de página.
 #set page(
   paper: "us-letter",
   margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
   numbering: "1",
 )
 
+// Obliga a insertar un salto hacia la página siguiente.
 #pagebreak()
+// Ajustamos las reglas de los párrafos (par): 'justify: true' para texto justificado y 'leading' ajusta el interlineado.
+// También configuramos listas indexadas y la forma de la numeración de títulos.
 #set par(justify: true, leading: 1.4em)
 #set heading(numbering: "1.")
 #set list(indent: 1.5em)
 
+// Cambiamos temporalmente el tamaño de página a 'auto' para que la página se adapte dinámicamente al tamaño horizontal y vertical del contenido (ej. nuestro pdf anexo).
 #set page(
   width: auto,
   height: auto,
   margin: 1cm,
 )
 
+// Con un signo de igual '=' creamos un título o encabezado de primer nivel (equivale a H1 en HTML HTML).
 = Instrucciones
 
+// Cargamos la información cruda (bytes) del archivo PDF externo.
 #let instructions = read("media/Examen-practico_IP.pdf", encoding: none)
+// Construimos la imagen del PDF en el documento leyendo esa data.
 #image(instructions, width: auto, height: auto)
 
 #set page(
@@ -368,7 +381,9 @@ Se aplicó la técnica de prueba de Caja Blanca para ambos bloques de código, c
 
 = Primer código
 
+// Con '==' creamos un título de segundo nivel (subtítulo).
 == Código a analizar (sintaxis traducida a TypeScript)
+// Usamos bloques de código con acentos graves especificando un lenguaje como ts (TypeScript) para obtener colores y resaltado de la sintaxis.
 ```
 ```ts
 if(edad >= 18){ // 1
@@ -387,13 +402,19 @@ if(edad >= 18){ // 1
 ```typ
 == A. Grafo de flujo
 
+// Utilizamos el constructor especial '#figure' para envolver algo gráfico en la hoja, lo cual nos permite ponerle una leyenda / texto ilustrativo centrado ('caption') al pie del gráfico.
 #figure(
+// Iniciamos el entorno o lienzo de dibujo 'cetz'. A partir de aquí entramos en su propio lenguaje lógico de dibujo.
   cetz.canvas({
     import cetz.draw: *
 
+// Declaramos un estilo visual base que ocuparemos más adelante repetidas veces (el radio del círculo, el grosor del borde, y fondo blanco).
     let node-style = (radius: 0.35, stroke: 0.7pt, fill: white)
 
+// Dibujamos el primer círculo en la coordenada matemática (x: 0, y: 5) de nuestro lienzo. Al ponerle nombre (name: "1") luego podremos referenciarlo desde las flechas y textos. 
+    // Con '..node-style' desempacamos/heredamos la configuración visual que escribimos arriba.
     circle((0, 5), name: "1", ..node-style)
+// Escribimos el contenido textual estricto sobre lo que se haya etiquetado como "1" hace un momento, en este caso, dibujando el [1].
     content("1", [1])
 
     circle((-1.5, 3.5), name: "2", ..node-style)
@@ -417,6 +438,7 @@ if(edad >= 18){ // 1
     circle((0, -1), name: "8", ..node-style)
     content("8", [8])
 
+// Renderizamos una línea para conectar los elementos con nombres "1" y "2". Con mark = (end: ">") Typst dibujará una terminación de flecha geométrica al extremo que entra.
     line("1", "2", mark: (end: ">"), name: "e12")
     content("e12", [V], anchor: "south-east", padding: 0.1)
 
@@ -434,6 +456,7 @@ if(edad >= 18){ // 1
     line("4", "6", mark: (end: ">"), name: "e46")
     content("e46", [F], anchor: "south-west", padding: 0.1)
 
+// Éste trazo de varios argumentos funciona en segmentos quebrados (ortogonales): parte desde la coordenada inferior del nodo ("3.south"), viaja hacia el punto de inflexión vacío (-3, -1), y finalmente busca entrar al oeste ("8.west") del último nodo.
     line("3.south", (-3, -1), "8.west", mark: (end: ">"))
     content((-3.1, 0.5), [V], anchor: "east", padding: 0.1)
 
@@ -448,6 +471,7 @@ if(edad >= 18){ // 1
 
 == B. Complejidad Ciclomática
 
+// Typst es genial con notación matemática simple. Podemos rodear expresiones con símbolos de dólar ('$') para renderizar fórmulas visuales bien escritas (ej. $V(G)$).
 Para calcular la complejidad ciclomática $V(G)$ podemos utilizar tres fórmulas distintas que nos darán el mismo resultado:
 
 1. *Fórmula de Aristas y Nodos:* $V(G) = E - N + 2$
@@ -475,6 +499,8 @@ Para calcular la complejidad ciclomática $V(G)$ podemos utilizar tres fórmulas
 
 == D. Casos de Prueba
 
+// El componente '#table' agrupa las cosas en celdas matriciales. Definiendo las columnas como vector (auto, auto...) estipularemos cuántas colécciones de celdas queremos y que se auto-ajusten su ancho. 
+// Luego, por simple orden de tabulado vertical pasamos las celdas una a una como [Valor] por corchetes.
 #table(
   columns: (auto, auto, auto, auto, auto, auto),
   align: center,

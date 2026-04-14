@@ -1,0 +1,2 @@
+description = "Switch model profile for GSD agents (quality/balanced/budget/inherit)"
+prompt = "Show the following output to the user verbatim, with no extra commentary:\n\n!`node \"/Users/moonstone/Source/UPIICSA/Plan 2021/2026 2/6NM61 Ingeniería de Pruebas/docs---ingPruebas/.gemini/get-shit-done/bin/gsd-tools.cjs\" config-set-model-profile $ARGUMENTS --raw`"

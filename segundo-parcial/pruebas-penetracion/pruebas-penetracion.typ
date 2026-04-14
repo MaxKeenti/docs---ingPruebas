@@ -107,6 +107,130 @@ Dependiendo del nivel de información con que cuenta el evaluador, las pruebas d
 )
 
 // ─────────────────────────────────────────────────────────────
+// SUBSECCIÓN: Ethical Hacking
+// ─────────────────────────────────────────────────────────────
+
+== Ethical Hacking
+
+El _ethical hacking_ (o *hacking ético*) es la práctica de explotar sistemas informáticos de forma deliberada y autorizada para identificar vulnerabilidades de seguridad, antes de que un actor malicioso pueda aprovecharlas. A diferencia del hacking malicioso, el hacking ético se realiza siempre con el conocimiento y el consentimiento explícito del propietario del sistema objetivo.
+
+=== Principios fundamentales
+
+- *Autorización explícita:* El evaluador trabaja bajo un contrato o acuerdo que delimita claramente el alcance de las pruebas. Actuar fuera de ese alcance constituye un delito.
+- *Alcance delimitado:* Solo se evalúan los sistemas, redes o aplicaciones específicamente listados en el acuerdo. Cualquier sistema fuera del alcance es intocable.
+- *Reporte responsable:* Los hallazgos se documentan en un reporte detallado que se entrega confidencialmente al cliente, con severidad, evidencia y recomendaciones.
+- *No daño intencional:* El objetivo es identificar vulnerabilidades, no explotar daños permanentes ni comprometer datos reales.
+
+=== Relación con las pruebas de penetración
+
+El hacking ético abarca las pruebas de penetración como su técnica central, pero también incluye auditorías de configuración, análisis de riesgo, ingeniería social controlada (phishing simulado) y revisión de arquitecturas de seguridad. Toda prueba de penetración es hacking ético, pero no todo hacking ético es necesariamente una prueba de penetración.
+
+=== Fases del proceso
+
++ *Reconocimiento (Information Gathering):* Recopilación pasiva y activa de información sobre el objetivo: dominios, IPs, tecnologías, empleados, servicios expuestos.
++ *Escaneo y enumeración:* Identificación de puertos abiertos, servicios activos, versiones de software y posibles puntos de entrada mediante herramientas como Nmap o Nessus.
++ *Explotación controlada:* Intento de aprovechar las vulnerabilidades descubiertas para ganar acceso no autorizado, siempre dentro del alcance acordado.
++ *Post-explotación y escalada de privilegios:* Evaluación del daño potencial en caso de que un atacante hubiera comprometido el sistema: movimiento lateral, acceso a datos, persistencia.
++ *Limpieza:* Eliminación de cualquier herramienta, backdoor o artefacto dejado durante las pruebas para restablecer el estado original del sistema.
++ *Reporte:* Documentación formal de vulnerabilidades, evidencia, severidad (CVSS), impacto potencial y recomendaciones de remediación.
+
+// ─────────────────────────────────────────────────────────────
+// SUBSECCIÓN: QA y Pruebas de Seguridad
+// ─────────────────────────────────────────────────────────────
+
+== QA y Pruebas de Seguridad
+
+El aseguramiento de la calidad (_Quality Assurance_, QA) en el contexto de la seguridad del software tiene como objetivo garantizar que una aplicación no solo funcione correctamente, sino que también sea resistente a ataques y proteja adecuadamente la información de sus usuarios. A diferencia de las pruebas funcionales —que verifican que el sistema hace lo que se espera— las pruebas de seguridad verifican que el sistema no hace lo que *no* se espera cuando recibe entradas maliciosas o inesperadas.
+
+=== Tipos de pruebas de seguridad en QA
+
+#figure(
+  table(
+    columns: (auto, 1fr, 1fr),
+    align: (center, left, left),
+    fill: (col, row) => if row == 0 { rgb("1E40AF").lighten(10%) } else if calc.odd(row) { rgb("F0F4FF") } else { white },
+    table.header(
+      text(fill: white)[*Tipo*],
+      text(fill: white)[*Qué analiza*],
+      text(fill: white)[*Cuándo se aplica*],
+    ),
+    [*SAST*\ _(Static Application\ Security Testing)_],
+    [Código fuente, bytecode o binarios sin ejecutar la aplicación. Detecta inyecciones SQL, XSS, secretos embebidos, configuraciones inseguras.],
+    [Durante el desarrollo; integrado en el pipeline de CI/CD. Detecta problemas temprano (shift-left).],
+    [*DAST*\ _(Dynamic Application\ Security Testing)_],
+    [La aplicación en ejecución mediante simulación de ataques (fuzzing, escaneo de endpoints, manipulación de parámetros).],
+    [En entornos de staging o preproducción. Complementa al SAST detectando vulnerabilidades de runtime.],
+    [*IAST*\ _(Interactive Application\ Security Testing)_],
+    [Combina agentes instrumentados dentro de la app con pruebas dinámicas; mapea el flujo de datos durante la ejecución.],
+    [Durante pruebas funcionales o de integración. Mayor precisión, menor tasa de falsos positivos.],
+    [*Fuzzing*],
+    [Envío masivo de entradas aleatorias, malformadas o semi-válidas para detectar crashes, desbordamientos de buffer o comportamientos inesperados.],
+    [En etapas avanzadas de QA; especialmente útil para protocolos, parsers y APIs.],
+    [*Pentesting\ (DAST manual)*],
+    [Prueba de penetración completa conducida por un profesional humano, con mayor creatividad y contexto que las herramientas automáticas.],
+    [En releases mayores, auditorías periódicas o antes de producción.],
+  ),
+  caption: [Tipos de pruebas de seguridad integradas en el proceso de QA],
+)
+
+=== Integración con el ciclo de desarrollo (SDL / Shift-Left Security)
+
+La práctica de _shift-left_ promueve incorporar las pruebas de seguridad desde las fases más tempranas del ciclo de vida del software, en lugar de tratarlas como una etapa final. El marco de referencia del _Software Development Lifecycle_ (SDL) de Microsoft y el _Secure Software Development Framework_ (SSDF) del NIST formalizan este enfoque, exigiendo que cada fase del desarrollo —desde los requerimientos hasta el despliegue— contemple controles de seguridad específicos.
+
+// ─────────────────────────────────────────────────────────────
+// SUBSECCIÓN: Vulnerabilidades por Arquitectura
+// ─────────────────────────────────────────────────────────────
+
+== Vulnerabilidades Comunes por Arquitectura de Software
+
+La arquitectura de un sistema define de forma determinante su superficie de ataque: cuántos puntos de entrada existen, qué tan aislados están los componentes entre sí, y cuál es el radio de daño (_blast radius_) en caso de una brecha exitosa. La siguiente tabla clasifica las arquitecturas más comunes de mayor a menor exposición general, considerando la combinación de superficie de ataque, facilidad de explotación y daño potencial.
+
+#figure(
+  table(
+    columns: (auto, auto, 1fr, auto),
+    align: (center, left, left, center),
+    fill: (col, row) => if row == 0 { rgb("1E3A8A").lighten(10%) } else if calc.odd(row) { rgb("F0F9FF") } else { white },
+    table.header(
+      text(fill: white)[*Rango*],
+      text(fill: white)[*Arquitectura*],
+      text(fill: white)[*Vulnerabilidades principales*],
+      text(fill: white)[*Blast Radius*],
+    ),
+    [🔴 1],
+    [*Monolítica*],
+    [SQL injection con acceso a toda la base de datos; RCE con control total del servidor; SSRF; auth bypass que expone toda la funcionalidad. Una sola brecha compromete el sistema completo.],
+    [Crítico],
+    [🔴 2],
+    [*MVC*\ _(Model-View-\ Controller)_],
+    [XSS en la capa View; SQL injection en la capa Model; CSRF en la capa Controller; IDOR (_Insecure Direct Object Reference_); validación de entrada inconsistente entre capas.],
+    [Alto],
+    [🟠 3],
+    [*N-capas*\ _(Layered / N-tier)_],
+    [Session hijacking entre capa de presentación y lógica de negocio; inyección de datos entre capas; escalada de privilegios si el aislamiento entre capas no es estricto; deserialización insegura.],
+    [Alto],
+    [🟠 4],
+    [*SOA / API-First*\ _(REST, GraphQL)_],
+    [Broken Object Level Authorization (BOLA/IDOR); JWT manipulation; ausencia de rate limiting; mass assignment; exposición excesiva de datos en respuestas; enumeración de endpoints.],
+    [Medio-Alto],
+    [🟡 5],
+    [*Microservicios*],
+    [Mayor superficie de ataque total (muchos endpoints); comunicación inter-servicio insegura (mTLS mal configurado); vulnerabilidades en el API gateway; imágenes de contenedor desactualizadas; secretos expuestos en variables de entorno.],
+    [Medio\ _(aislado por servicio)_],
+    [🟡 6],
+    [*Event-Driven*\ _(Pub-Sub, Message Queue)_],
+    [Inyección de mensajes maliciosos en colas; replay attacks; deserialización insegura del payload; falta de autenticación entre productor y consumidor. Difícil rastrear el origen del ataque.],
+    [Medio],
+    [🟢 7],
+    [*Serverless / FaaS*],
+    [Inyección por eventos de entrada (S3, API Gateway, etc.); dependencias con vulnerabilidades conocidas (supply chain); funciones con permisos excesivos (over-privileged IAM roles); cold start information leakage.],
+    [Bajo\ _(por función)_],
+  ),
+  caption: [Arquitecturas de software ordenadas de mayor a menor exposición a vulnerabilidades de seguridad],
+)
+
+Es importante notar que ninguna arquitectura es inherentemente "segura": cada una introduce sus propios vectores de ataque. La arquitectura serverless, aunque tiene el menor radio de daño por unidad funcional, puede tener una cadena de dependencias compleja que amplíe significativamente la superficie de ataque total. Los microservicios, por su parte, reducen el blast radius per servicio, pero multiplican la superficie de ataque global y la complejidad del monitoreo.
+
+// ─────────────────────────────────────────────────────────────
 // SECCIÓN 2: Resumen del artículo SG #42
 // ─────────────────────────────────────────────────────────────
 

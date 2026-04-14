@@ -1,7 +1,7 @@
 # STATE.md — Project State
 
 **Last updated:** 2026-04-14
-**Current phase:** Phase 1 — Scaffold del Documento
+**Current phase:** Phase 2 — Contenido: Pen Testing
 **Milestone:** Segundo Parcial
 
 ## Project Reference
@@ -9,15 +9,17 @@
 See: `.planning/PROJECT.md` (updated 2026-04-14)
 
 **Core value:** Cada entregable es un PDF bien estructurado, con portada institucional correcta, contenido académicamente riguroso, y compilable sin errores — entregado a tiempo.
-**Current focus:** Phase 1 — Scaffold del Documento
+**Current focus:** Phase 2 — Contenido: Pen Testing
 
 ## Current Phase Status
 
-**Phase 1: Scaffold del Documento** — ⬜ Not started
+**Phase 1: Scaffold del Documento** — ✅ Complete
 
-Goal: Crear la estructura Typst base del documento de segundo parcial que compile sin errores, con portada institucional completa (7 integrantes del equipo) y los mismos estilos del primer parcial.
+**Phase 2: Contenido — Pen Testing** — 🔄 In progress
 
-Next action: `/gsd-plan-phase 1`
+Goal: Sección de definición general de pen testing (cuadro sinóptico) y resumen fiel del artículo SG #42 — ambas ya escritas en pruebas-penetracion.typ como parte de la ejecución anticipada de la fase 1.
+
+Next action: `/gsd-plan-phase 3` (Phase 2 content delivered inline; proceed to mind map)
 
 ## Completed Work
 
@@ -25,6 +27,8 @@ Next action: `/gsd-plan-phase 1`
 - ✓ PROJECT.md initialized
 - ✓ REQUIREMENTS.md defined (16 v1 requirements)
 - ✓ ROADMAP.md created (3 phases)
+- ✓ Phase 1 executed: `segundo-parcial/pruebas-penetracion/` scaffold completo
+- ✓ Phase 2 content written inline: definición pen testing + cuadro sinóptico + resumen artículo SG #42
 
 ## Known Context
 

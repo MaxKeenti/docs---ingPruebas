@@ -66,6 +66,12 @@
 // SECCIÓN 1: ¿Qué son las Pruebas de Penetración?
 // ─────────────────────────────────────────────────────────────
 
+#set page(
+  paper: "us-legal",
+  margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
+  numbering: "1",
+)
+
 = ¿Qué son las Pruebas de Penetración?
 
 Las *pruebas de penetración* (o _pen testing_, del inglés _penetration testing_) son un conjunto de técnicas de evaluación de seguridad en las que un profesional autorizado simula ataques reales contra un sistema, aplicación o infraestructura de TI, con el objetivo de identificar vulnerabilidades antes de que puedan ser explotadas por actores maliciosos. A diferencia de los análisis de vulnerabilidades automatizados, las pruebas de penetración implican un proceso activo y creativo de explotación controlada.
@@ -80,7 +86,9 @@ Dependiendo del nivel de información con que cuenta el evaluador, las pruebas d
   table(
     columns: (auto, 1fr, 1fr, 1fr),
     align: (center, left, left, left),
-    fill: (col, row) => if row == 0 { rgb("2563EB").lighten(10%) } else if calc.odd(row) { rgb("F0F4FF") } else { white },
+    fill: (col, row) => if row == 0 { rgb("2563EB").lighten(10%) } else if calc.odd(row) { rgb("F0F4FF") } else {
+      white
+    },
     table.header(
       text(fill: white)[*Tipo*],
       text(fill: white)[*Acceso al código / documentación*],
@@ -110,6 +118,13 @@ Dependiendo del nivel de información con que cuenta el evaluador, las pruebas d
 // SUBSECCIÓN: Ethical Hacking
 // ─────────────────────────────────────────────────────────────
 
+#pagebreak()
+#set page(
+  paper: "us-letter",
+  margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
+  numbering: "1",
+)
+
 == Ethical Hacking
 
 El _ethical hacking_ (o *hacking ético*) es la práctica de explotar sistemas informáticos de forma deliberada y autorizada para identificar vulnerabilidades de seguridad, antes de que un actor malicioso pueda aprovecharlas. A diferencia del hacking malicioso, el hacking ético se realiza siempre con el conocimiento y el consentimiento explícito del propietario del sistema objetivo.
@@ -138,6 +153,13 @@ El hacking ético abarca las pruebas de penetración como su técnica central, p
 // SUBSECCIÓN: QA y Pruebas de Seguridad
 // ─────────────────────────────────────────────────────────────
 
+#pagebreak()
+#set page(
+  paper: "a3",
+  margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
+  numbering: "1",
+)
+
 == QA y Pruebas de Seguridad
 
 El aseguramiento de la calidad (_Quality Assurance_, QA) en el contexto de la seguridad del software tiene como objetivo garantizar que una aplicación no solo funcione correctamente, sino que también sea resistente a ataques y proteja adecuadamente la información de sus usuarios. A diferencia de las pruebas funcionales —que verifican que el sistema hace lo que se espera— las pruebas de seguridad verifican que el sistema no hace lo que *no* se espera cuando recibe entradas maliciosas o inesperadas.
@@ -148,24 +170,26 @@ El aseguramiento de la calidad (_Quality Assurance_, QA) en el contexto de la se
   table(
     columns: (auto, 1fr, 1fr),
     align: (center, left, left),
-    fill: (col, row) => if row == 0 { rgb("1E40AF").lighten(10%) } else if calc.odd(row) { rgb("F0F4FF") } else { white },
-    table.header(
-      text(fill: white)[*Tipo*],
-      text(fill: white)[*Qué analiza*],
-      text(fill: white)[*Cuándo se aplica*],
-    ),
+    fill: (col, row) => if row == 0 { rgb("1E40AF").lighten(10%) } else if calc.odd(row) { rgb("F0F4FF") } else {
+      white
+    },
+    table.header(text(fill: white)[*Tipo*], text(fill: white)[*Qué analiza*], text(fill: white)[*Cuándo se aplica*]),
     [*SAST*\ _(Static Application\ Security Testing)_],
     [Código fuente, bytecode o binarios sin ejecutar la aplicación. Detecta inyecciones SQL, XSS, secretos embebidos, configuraciones inseguras.],
     [Durante el desarrollo; integrado en el pipeline de CI/CD. Detecta problemas temprano (shift-left).],
+
     [*DAST*\ _(Dynamic Application\ Security Testing)_],
     [La aplicación en ejecución mediante simulación de ataques (fuzzing, escaneo de endpoints, manipulación de parámetros).],
     [En entornos de staging o preproducción. Complementa al SAST detectando vulnerabilidades de runtime.],
+
     [*IAST*\ _(Interactive Application\ Security Testing)_],
     [Combina agentes instrumentados dentro de la app con pruebas dinámicas; mapea el flujo de datos durante la ejecución.],
     [Durante pruebas funcionales o de integración. Mayor precisión, menor tasa de falsos positivos.],
+
     [*Fuzzing*],
     [Envío masivo de entradas aleatorias, malformadas o semi-válidas para detectar crashes, desbordamientos de buffer o comportamientos inesperados.],
     [En etapas avanzadas de QA; especialmente útil para protocolos, parsers y APIs.],
+
     [*Pentesting\ (DAST manual)*],
     [Prueba de penetración completa conducida por un profesional humano, con mayor creatividad y contexto que las herramientas automáticas.],
     [En releases mayores, auditorías periódicas o antes de producción.],
@@ -181,6 +205,8 @@ La práctica de _shift-left_ promueve incorporar las pruebas de seguridad desde 
 // SUBSECCIÓN: Vulnerabilidades por Arquitectura
 // ─────────────────────────────────────────────────────────────
 
+#pagebreak()
+
 == Vulnerabilidades Comunes por Arquitectura de Software
 
 La arquitectura de un sistema define de forma determinante su superficie de ataque: cuántos puntos de entrada existen, qué tan aislados están los componentes entre sí, y cuál es el radio de daño (_blast radius_) en caso de una brecha exitosa. La siguiente tabla clasifica las arquitecturas más comunes de mayor a menor exposición general, considerando la combinación de superficie de ataque, facilidad de explotación y daño potencial.
@@ -189,7 +215,9 @@ La arquitectura de un sistema define de forma determinante su superficie de ataq
   table(
     columns: (auto, auto, 1fr, auto),
     align: (center, left, left, center),
-    fill: (col, row) => if row == 0 { rgb("1E3A8A").lighten(10%) } else if calc.odd(row) { rgb("F0F9FF") } else { white },
+    fill: (col, row) => if row == 0 { rgb("1E3A8A").lighten(10%) } else if calc.odd(row) { rgb("F0F9FF") } else {
+      white
+    },
     table.header(
       text(fill: white)[*Rango*],
       text(fill: white)[*Arquitectura*],
@@ -200,26 +228,32 @@ La arquitectura de un sistema define de forma determinante su superficie de ataq
     [*Monolítica*],
     [SQL injection con acceso a toda la base de datos; RCE con control total del servidor; SSRF; auth bypass que expone toda la funcionalidad. Una sola brecha compromete el sistema completo.],
     [Crítico],
+
     [🔴 2],
     [*MVC*\ _(Model-View-\ Controller)_],
     [XSS en la capa View; SQL injection en la capa Model; CSRF en la capa Controller; IDOR (_Insecure Direct Object Reference_); validación de entrada inconsistente entre capas.],
     [Alto],
+
     [🟠 3],
     [*N-capas*\ _(Layered / N-tier)_],
     [Session hijacking entre capa de presentación y lógica de negocio; inyección de datos entre capas; escalada de privilegios si el aislamiento entre capas no es estricto; deserialización insegura.],
     [Alto],
+
     [🟠 4],
     [*SOA / API-First*\ _(REST, GraphQL)_],
     [Broken Object Level Authorization (BOLA/IDOR); JWT manipulation; ausencia de rate limiting; mass assignment; exposición excesiva de datos en respuestas; enumeración de endpoints.],
     [Medio-Alto],
+
     [🟡 5],
     [*Microservicios*],
     [Mayor superficie de ataque total (muchos endpoints); comunicación inter-servicio insegura (mTLS mal configurado); vulnerabilidades en el API gateway; imágenes de contenedor desactualizadas; secretos expuestos en variables de entorno.],
     [Medio\ _(aislado por servicio)_],
+
     [🟡 6],
     [*Event-Driven*\ _(Pub-Sub, Message Queue)_],
     [Inyección de mensajes maliciosos en colas; replay attacks; deserialización insegura del payload; falta de autenticación entre productor y consumidor. Difícil rastrear el origen del ataque.],
     [Medio],
+
     [🟢 7],
     [*Serverless / FaaS*],
     [Inyección por eventos de entrada (S3, API Gateway, etc.); dependencias con vulnerabilidades conocidas (supply chain); funciones con permisos excesivos (over-privileged IAM roles); cold start information leakage.],
@@ -235,6 +269,12 @@ Es importante notar que ninguna arquitectura es inherentemente "segura": cada un
 // ─────────────────────────────────────────────────────────────
 
 #pagebreak()
+
+#set page(
+  paper: "us-letter",
+  margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
+  numbering: "1",
+)
 
 = Resumen: Introducción a las Pruebas de Penetración en Dispositivos iOS
 
@@ -307,22 +347,25 @@ Brito Abundis, C. J. (s.f.). Introducción a las pruebas de penetración en disp
 // ─────────────────────────────────────────────────────────────
 
 #pagebreak()
+#set page(
+  width: auto,
+  height: auto,
+  margin: 1.5cm,
+)
 
 = Organizador Gráfico
 
 El siguiente mapa mental sintetiza los temas principales del artículo _"Introducción a las pruebas de penetración en dispositivos iOS"_ de Carlos Joaquín Brito Abundis (SG #42).
-
-#set page(width: auto, height: auto, margin: 1.5cm)
 
 #figure(
   cetz.canvas(length: 1cm, {
     import cetz.draw: *
 
     // ── Estilos ──────────────────────────────────────────────
-    let c-style   = (radius: 1.35, stroke: 1.5pt + rgb("1E3A8A"), fill: rgb("1D4ED8"))
-    let b-style   = (radius: 0.85, stroke: 1pt + rgb("1E40AF"), fill: rgb("3B82F6").lighten(30%))
-    let l-style   = (radius: 0.65, stroke: 0.6pt + rgb("93C5FD"), fill: rgb("DBEAFE"))
-    let edge      = (stroke: 0.8pt + rgb("60A5FA"))
+    let c-style = (radius: 1.35, stroke: 1.5pt + rgb("1E3A8A"), fill: rgb("1D4ED8"))
+    let b-style = (radius: 0.85, stroke: 1pt + rgb("1E40AF"), fill: rgb("3B82F6").lighten(30%))
+    let l-style = (radius: 0.65, stroke: 0.6pt + rgb("93C5FD"), fill: rgb("DBEAFE"))
+    let edge = (stroke: 0.8pt + rgb("60A5FA"))
     let edge-leaf = (stroke: 0.5pt + rgb("93C5FD"))
 
     // ── Nodo Central ─────────────────────────────────────────
@@ -449,7 +492,6 @@ El siguiente mapa mental sintetiza los temas principales del artículo _"Introdu
     circle((-5.2, 2), name: "amen2", ..l-style)
     content("amen2", text(size: 0.55em)[Smishing\ botnet móvil])
     line("amen", "amen2", ..edge-leaf)
-
   }),
   caption: [Mapa mental: Introducción a las pruebas de penetración en dispositivos iOS (Brito Abundis, SG #42)],
 )<mindmap-ios-pentest>

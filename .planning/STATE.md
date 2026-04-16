@@ -1,6 +1,6 @@
 # STATE.md — Project State
 
-**Last updated:** 2026-04-14
+**Last updated:** 2026-04-16
 **Current phase:** ✅ Milestone completo — Segundo Parcial
 **Milestone:** Segundo Parcial
 
@@ -10,6 +10,7 @@ See: `.planning/PROJECT.md` (updated 2026-04-14)
 
 **Core value:** Cada entregable es un PDF bien estructurado, con portada institucional correcta, contenido académicamente riguroso, y compilable sin errores — entregado a tiempo.
 **Current focus:** Compilar y entregar `segundo-parcial/pruebas-penetracion/pruebas-penetracion.typ`
+**Last activity:** 2026-04-16 - Completed quick task 260415-tdv: Append explanation and hypothetical code to explain the black-box test results in primer-parcial/prueba-caja-negra/individual/caja-negra.typ
 
 ## Current Phase Status
 
@@ -37,3 +38,9 @@ See: `.planning/PROJECT.md` (updated 2026-04-14)
 - Fuente del resumen: artículo SG #42 de Carlos Joaquín Brito Abundis (ya leído y disponible)
 - Organizadores: mind map CeTZ (artículo) + cuadro sinóptico tabla Typst (definición)
 - Directorio destino: `segundo-parcial/pruebas-penetracion/`
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260415-tdv | Append explanation and hypothetical code to explain the black-box test results in primer-parcial/prueba-caja-negra/individual/caja-negra.typ | 2026-04-16 | 6083f79 | [260415-tdv-append-explanation-and-hypothetical-code](./quick/260415-tdv-append-explanation-and-hypothetical-code/) |

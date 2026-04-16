@@ -1,7 +1,7 @@
 // ============================================================================
 // THEME CONFIGURATION - Change to true for dark mode
 // ============================================================================
-#let dark-mode = false
+#let dark-mode = true
 
 // Define color schemes
 #let theme = if dark-mode {
@@ -38,14 +38,24 @@
   fill: theme.text,
 )
 
+#show raw.where(block: true): it => block(
+  fill: theme.code-bg,
+  inset: 12pt,
+  radius: 4pt,
+  width: 100%,
+)[
+  #set text(fill: theme.text)
+  #it.body
+]
+
 // Importamos la librería codly para numeración automática de líneas
 #import "@preview/codly:1.3.0": *
 #show: codly-init.with()
 
 #codly(
   languages: (
-    ts: (name: "TypeScript", icon: "", color: rgb("#3178C6")),
-    typ: (name: "Typst", icon: "", color: rgb("#239DAD")),
+    ts: (name: "TypeScript", icon: "", color: if dark-mode { rgb("#5EB3F6") } else { rgb("#3178C6") }),
+    typ: (name: "Typst", icon: "", color: if dark-mode { rgb("#5DADE2") } else { rgb("#239DAD") }),
   ),
   number-format: n => str(n),
 )

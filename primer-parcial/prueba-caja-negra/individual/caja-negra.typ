@@ -8,9 +8,21 @@
 )
 
 // Importamos la librería zebraw para syntax highlighting con line numbers
-#import "@preview/zebraw:0.6.1": zebraw
+#import "@preview/zebraw:0.6.1": *
 
-#show raw.where(block: true): it => zebraw(it)
+#show raw.where(block: true): it => zebraw(
+  it,
+  line-number: (
+    start: 1,
+    format: n => str(n),
+  ),
+  highlight: (
+    fill: (even: theme.code-stripe-1, odd: theme.code-stripe-2),
+  ),
+  inset: 12pt,
+  radius: 4pt,
+  stroke: none,
+)
 
 #set text(
   font: "ITC Avant Garde Gothic",

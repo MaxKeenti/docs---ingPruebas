@@ -122,3 +122,16 @@ Se analizan las particiones para los campos de Día, Mes y Año, considerando a�
   [1], [1], [2300], [Error: Año fuera de rango (max 2199)],
 )
 
+= Interpretación de resultados y lógica hipotética
+
+== Ejercicio 1: Aplicación Financiera
+
+Las tablas muestran que cada variable tiene una partición válida y dos inválidas. Cuando *Principal* está en $[100, 100000000]$, *Inflación* en $[1, 20]$ y *Interés* en $[0, 25]$, el sistema acepta la entrada porque cumple reglas de negocio mínimas para el cálculo financiero. Cuando un valor cae fuera de su límite inferior o superior, se espera un error específico por campo, lo cual permite rastrear con claridad qué validación falló.
+
+== Ejercicio 2: Función Matemática F(x)
+
+En este caso, la salida esperada no depende de validaciones de formato, sino del intervalo al que pertenece $x$. Cada clase de equivalencia representa una ruta de decisión distinta: valores menores a $-2$ se dirigen al Intervalo 1, valores entre $-2$ y $4$ (incluyendo extremos) al Intervalo 2, y valores mayores a $4$ al Intervalo 3. Por eso, con un valor representativo por clase se justifica el comportamiento esperado para todo el subdominio.
+
+== Ejercicio 3: Validación de Fechas
+
+Los resultados confirman una validación por capas: primero el rango de *año* y *mes*, y después el rango de *día* según el mes y si el año es bisiesto. Así se explican casos como junio 31 (inválido por límite mensual) o 29/02/2001 (inválido por no ser bisiesto). Las filas válidas representan ejemplos de meses de 31 días, 30 días y febrero, cubriendo las particiones principales del calendario.

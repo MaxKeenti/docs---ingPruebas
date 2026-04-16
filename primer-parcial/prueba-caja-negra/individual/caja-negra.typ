@@ -13,6 +13,8 @@
     border: rgb("#404040"),
     table-alt: rgb("#2a2a2a"),
     code-bg: rgb("#2a2a2a"),
+    code-stripe-1: rgb("#2a2a2a"),
+    code-stripe-2: rgb("#252525"),
   )
 } else {
   (
@@ -23,6 +25,8 @@
     border: rgb("#cccccc"),
     table-alt: rgb("#f9f9f9"),
     code-bg: rgb("#d9d9d9"),
+    code-stripe-1: rgb("#d9d9d9"),
+    code-stripe-2: rgb("#e8e8e8"),
   )
 }
 
@@ -38,26 +42,21 @@
   fill: theme.text,
 )
 
-#show raw.where(block: true): it => block(
-  fill: theme.code-bg,
+// Importamos la librería zebraw para syntax highlighting con line numbers
+#import "@preview/zebraw:0.6.1": *
+
+#show raw.where(block: true): it => zebraw(
+  it,
+  line-number: (
+    start: 1,
+    format: n => str(n),
+  ),
+  highlight: (
+    fill: (even: theme.code-stripe-1, odd: theme.code-stripe-2),
+  ),
   inset: 12pt,
   radius: 4pt,
-  width: 100%,
-)[
-  #set text(fill: theme.text)
-  #it.body
-]
-
-// Importamos la librería codly para numeración automática de líneas
-#import "@preview/codly:1.3.0": *
-#show: codly-init.with()
-
-#codly(
-  languages: (
-    ts: (name: "TypeScript", icon: "", color: if dark-mode { rgb("#5EB3F6") } else { rgb("#3178C6") }),
-    typ: (name: "Typst", icon: "", color: if dark-mode { rgb("#5DADE2") } else { rgb("#239DAD") }),
-  ),
-  number-format: n => str(n),
+  stroke: none,
 )
 
 #set text(

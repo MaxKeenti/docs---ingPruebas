@@ -22,7 +22,7 @@
     heading: rgb("#2c3e50"),
     border: rgb("#cccccc"),
     table-alt: rgb("#f9f9f9"),
-    code-bg: rgb("#f5f5f5"),
+    code-bg: rgb("#d9d9d9"),
   )
 }
 

@@ -58,6 +58,9 @@
     typ: (name: "Typst", icon: "", color: if dark-mode { rgb("#5DADE2") } else { rgb("#239DAD") }),
   ),
   number-format: n => str(n),
+  highlight: (
+    fill: if dark-mode { rgb("#2a2a2a") } else { rgb("#d9d9d9") },
+  ),
 )
 
 #set text(

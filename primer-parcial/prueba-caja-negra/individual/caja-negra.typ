@@ -1,37 +1,3 @@
-// ============================================================================
-// THEME CONFIGURATION - Change to true for dark mode
-// ============================================================================
-#let dark-mode = true
-
-// Define color schemes
-#let theme = if dark-mode {
-  (
-    background: rgb("#1e1e1e"),
-    text: rgb("#e0e0e0"),
-    text-strong: rgb("#f0f0f0"),
-    heading: rgb("#bb86fc"),
-    border: rgb("#404040"),
-    table-alt: rgb("#2a2a2a"),
-    code-bg: rgb("#2a2a2a"),
-    code-stripe-1: rgb("#2a2a2a"),
-    code-stripe-2: rgb("#252525"),
-  )
-} else {
-  (
-    background: rgb("#ffffff"),
-    text: rgb("#000000"),
-    text-strong: rgb("#000000"),
-    heading: rgb("#2c3e50"),
-    border: rgb("#cccccc"),
-    table-alt: rgb("#f9f9f9"),
-    code-bg: rgb("#d9d9d9"),
-    code-stripe-1: rgb("#d9d9d9"),
-    code-stripe-2: rgb("#e8e8e8"),
-  )
-}
-
-// ============================================================================
-
 #import "@preview/cetz:0.4.2"
 #import "portada-template.typ": portada
 
@@ -39,7 +5,6 @@
   font: "JetBrainsMono NFM",
   weight: "medium",
   size: 1em,
-  fill: theme.text,
 )
 
 // Importamos la librería zebraw para syntax highlighting con line numbers
@@ -51,16 +16,14 @@
   font: "ITC Avant Garde Gothic",
   lang: "es",
   weight: "semibold",
-  fill: theme.text,
 )
 
-#show heading: set text(font: "Fraunces 72pt", weight: "black", fill: theme.heading)
+#show heading: set text(font: "Fraunces 72pt", weight: "black")
 
 #set page(
   paper: "us-letter",
   margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
   numbering: "1",
-  fill: theme.background,
 )
 
 #let integrantes = (
@@ -94,19 +57,9 @@
   paper: "us-letter",
   margin: (left: 3cm, top: 2.5cm, right: 2.5cm, bottom: 2.5cm),
   numbering: "1",
-  fill: theme.background,
 )
 
-#set table(
-  stroke: (x, y) => (
-    left: theme.border,
-    right: theme.border,
-    top: theme.border,
-    bottom: theme.border,
-  ),
-)
-
-#align(center, text(font: "Fraunces 72pt", 24pt, weight: "bold", fill: theme.heading)[Caja Negra Individual])
+#align(center, text(font: "Fraunces 72pt", 24pt, weight: "bold")[Caja Negra Individual])
 
 #v(1cm)
 

@@ -7,21 +7,16 @@
   size: 1em,
 )
 
-// Importamos la librería zebraw para syntax highlighting con line numbers
-#import "@preview/zebraw:0.6.1": *
+// Importamos la librería codly para numeración automática de líneas
+#import "@preview/codly:1.3.0": *
+#show: codly-init.with()
 
-#show raw.where(block: true): it => zebraw(
-  it,
-  line-number: (
-    start: 1,
-    format: n => str(n),
+#codly(
+  languages: (
+    ts: (name: "TypeScript", icon: "", color: rgb("#3178C6")),
+    typ: (name: "Typst", icon: "", color: rgb("#239DAD")),
   ),
-  highlight: (
-    fill: (even: theme.code-stripe-1, odd: theme.code-stripe-2),
-  ),
-  inset: 12pt,
-  radius: 4pt,
-  stroke: none,
+  number-format: n => str(n),
 )
 
 #set text(

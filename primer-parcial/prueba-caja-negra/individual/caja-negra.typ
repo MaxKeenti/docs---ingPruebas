@@ -66,11 +66,15 @@
   numbering: "1",
 )
 
-#align(center, text(24pt, weight: "bold")[Caja Negra Individual])
+#align(center, text(font: "Fraunces 72pt", 24pt, weight: "bold")[Caja Negra Individual])
 
 #v(1cm)
 
-= Criterio de obtención de resultados
+= Ejercicio 1: Aplicación Financiera
+
+Se definen las particiones de equivalencia para las variables Principal, Tasa de Interés y Estimación de Inflación.
+
+== Criterio de obtención de resultados
 
 Los resultados esperados se derivan con *partición equivalente*:
 - Definir dominio válido por variable.
@@ -81,21 +85,17 @@ Los resultados esperados se derivan con *partición equivalente*:
 Además, se incluyen casos de *valores límite (BVA)* para validar fronteras:
 `min-1`, `min`, `min+1`, `max-1`, `max`, `max+1`.
 
-= Ejercicio 1: Aplicación Financiera
-
-Se definen las particiones de equivalencia para las variables Principal, Tasa de Interés y Estimación de Inflación.
-
 == Origen de los resultados esperados
 
-- `100 <= principal <= 100_000_000` -> `Válido`
-- `principal < 100` -> `Error: Valor mínimo 100`
-- `principal > 100_000_000` -> `Error: Valor máximo 100M`
-- `1 <= inflacion <= 20` -> `Válido`
-- `inflacion < 1` -> `Error: Valor mínimo 1%`
-- `inflacion > 20` -> `Error: Valor máximo 20%`
-- `0 <= interes <= 25` -> `Válido`
-- `interes < 0` -> `Error: Valor mínimo 0%`
-- `interes > 25` -> `Error: Valor máximo 25%`
+- `100 <= principal <= 100_000_000 -> Válido`
+- `principal < 100 -> Error: Valor mínimo 100`
+- `principal > 100_000_000 -> Error: Valor máximo 100M`
+- `1 <= inflacion <= 20 -> Válido`
+- `inflacion < 1 -> Error: Valor mínimo 1%`
+- `inflacion > 20 -> Error: Valor máximo 20%`
+- `0 <= interes <= 25 -> Válido`
+- `interes < 0 -> Error: Valor mínimo 0%`
+- `interes > 25 -> Error: Valor máximo 25%`
 
 == Código hipotético que produce esos resultados
 
@@ -135,6 +135,10 @@ function validarAplicacionFinanciera(
   [Interés], [Inválida: > 25], [30], [Error: Valor máximo 25%],
 )
 
+= Ejercicio 2: Función Matemática F(x)
+
+Se definen las particiones basadas en los subdominios de la función real.
+
 == Valores límite (BVA)
 
 Valores nominales para aislar variable: `principal=1,000,000`, `inflacion=5`, `interes=10`.
@@ -163,15 +167,11 @@ Valores nominales para aislar variable: `principal=1,000,000`, `inflacion=5`, `i
   [Interés], [25.01], [Error: Valor máximo 25%],
 )
 
-= Ejercicio 2: Función Matemática F(x)
-
-Se definen las particiones basadas en los subdominios de la función real.
-
 == Origen de los resultados esperados
 
-- `x < -2` -> `Procesar en Intervalo 1`
-- `-2 <= x <= 4` -> `Procesar en Intervalo 2`
-- `x > 4` -> `Procesar en Intervalo 3`
+- `x < -2 -> Procesar en Intervalo 1`
+- `-2 <= x <= 4 -> Procesar en Intervalo 2`
+- `x > 4 -> Procesar en Intervalo 3`
 
 == Código hipotético que produce esos resultados
 
@@ -192,6 +192,10 @@ function clasificarIntervaloFx(x: number): string {
   [Clase 3: $(4, +infinity)$], [10], [Procesar en Intervalo 3],
 )
 
+= Ejercicio 3: Validación de Fechas
+
+Se analizan las particiones para los campos de Día, Mes y Año, considerando años bisiestos y meses de diferente duración.
+
 == Valores límite (BVA)
 
 #table(
@@ -205,10 +209,6 @@ function clasificarIntervaloFx(x: number): string {
   [4], [4], [Procesar en Intervalo 2],
   [4], [4.01], [Procesar en Intervalo 3],
 )
-
-= Ejercicio 3: Validación de Fechas
-
-Se analizan las particiones para los campos de Día, Mes y Año, considerando años bisiestos y meses de diferente duración.
 
 == Origen de los resultados esperados
 
@@ -285,7 +285,7 @@ function validarFecha(dia: number, mes: number, anio: number): string {
   [Año], [(1, 1, 2200)], [Error: Año fuera de rango (max 2199)], [max+1],
 )
 
-= Matriz de trazabilidad (Regla -> Caso -> Resultado)
+= Matriz de trazabilidad (Regla `->` Caso `->` Resultado)
 
 #table(
   columns: (auto, 1.5fr, 1fr, 1fr),

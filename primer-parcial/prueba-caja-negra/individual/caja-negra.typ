@@ -97,6 +97,8 @@ Además, se incluyen casos de *valores límite (BVA)* para validar fronteras:
 - `interes < 0 -> Error: Valor mínimo 0%`
 - `interes > 25 -> Error: Valor máximo 25%`
 
+#pagebreak()
+
 == Código hipotético que produce esos resultados
 
 ```ts

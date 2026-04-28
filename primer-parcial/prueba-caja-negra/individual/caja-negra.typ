@@ -72,7 +72,7 @@
 
 = Ejercicio 1: Aplicación Financiera
 
-Se definen las particiones de equivalencia para las variables Principal, Tasa de Interés y Estimación de Inflación.
+Se definen las particiones de equivalencia para las variables Principal, Tasa de Interés y Estimación de Inflación. Este ejercicio aplica pruebas de *caja negra*: no se analiza la lógica interna del sistema, únicamente se verifica que ante determinadas entradas el sistema produzca las salidas correctas. El reto es que el espacio de posibles combinaciones de tres valores numéricos es infinito, por lo que se utilizan técnicas sistemáticas para seleccionar un subconjunto finito pero representativo de casos de prueba.
 
 == Criterio de obtención de resultados
 
@@ -82,8 +82,12 @@ Los resultados esperados se derivan con *partición equivalente*:
 - Elegir un valor representativo por clase.
 - Asignar el resultado esperado según la regla de validación.
 
+La idea central es que si un valor dentro de una clase produce el resultado correcto, todos los demás valores de esa misma clase producirán el mismo resultado. Así, basta probar *un solo representante por clase* en lugar de probar todos los valores posibles. Para cada variable se identifican tres clases: válida (dentro del rango permitido), inválida por debajo del mínimo e inválida por encima del máximo.
+
 Además, se incluyen casos de *valores límite (BVA)* para validar fronteras:
 `min-1`, `min`, `min+1`, `max-1`, `max`, `max+1`.
+
+La experiencia en pruebas indica que los errores tienden a concentrarse en los bordes de los rangos, no en los valores centrales. Por ello, el análisis de valor frontera complementa la partición equivalente probando específicamente los valores exactos de la frontera, el inmediato interior y el inmediato exterior de cada límite.
 
 == Origen de los resultados esperados
 
@@ -96,8 +100,6 @@ Además, se incluyen casos de *valores límite (BVA)* para validar fronteras:
 - `0 <= interes <= 25 -> Válido`
 - `interes < 0 -> Error: Valor mínimo 0%`
 - `interes > 25 -> Error: Valor máximo 25%`
-
-#pagebreak()
 
 == Código hipotético que produce esos resultados
 
@@ -122,6 +124,10 @@ function validarAplicacionFinanciera(
 }
 ```
 
+La siguiente tabla muestra los 9 casos de prueba resultantes: tres por cada variable, uno por cada clase de equivalencia. Cada fila es independiente, es decir, al probar el valor de una variable se asume que las demás están en su rango válido nominal.
+
+#pagebreak()
+
 #table(
   columns: (1fr, 1fr, 1fr, 1fr),
   align: center,
@@ -143,7 +149,7 @@ Se definen las particiones basadas en los subdominios de la función real.
 
 == Valores límite (BVA)
 
-Valores nominales para aislar variable: `principal=1,000,000`, `inflacion=5`, `interes=10`.
+Para complementar la partición equivalente, se aplica el análisis de valor frontera sobre las mismas tres variables. Se prueba cada límite con tres valores: justo fuera (`min-1`, `max+1`), en la frontera exacta (`min`, `max`) y justo dentro (`min+1`, `max-1`). Para aislar el efecto de cada variable, las demás se mantienen en un valor nominal válido: `principal=1,000,000`, `inflacion=5`, `interes=10`.
 
 #table(
   columns: (1fr, 1fr, 1fr),

@@ -75,6 +75,116 @@ En términos de funcionamiento, estas pruebas se alejan de la validación intern
 - *Ejecución de la prueba:* Observación (con o sin moderador) de los usuarios intentando completar las tareas.
 - *Análisis y métricas:* Recopilación de métricas como el tiempo de finalización, tasa de error y comentarios cualitativos, para proponer mejoras en la interfaz.
 
+#pagebreak()
+
+= Auditoría Final de Pruebas de Software: Sistema de Gestión de Telas
+
+Documento técnico que presenta una auditoría completa de pruebas funcionales, de seguridad y de calidad aplicadas al sistema desarrollado en C\#.
+
+#v(1em)
+
+== Pruebas de Penetración
+
+#table(
+  columns: 4,
+  [*Caso*], [*Entrada*], [*Resultado esperado*], [*Riesgo*],
+  [SQL Injection], [' OR 1=1 --], [Acceso denegado], [Crítico],
+  [Fuerza bruta], [20 intentos login], [Bloqueo de usuario], [Alto],
+  [Manipulación precios], [Modificar precio], [Rechazo], [Alto],
+  [Acceso BD], [Intento externo], [Acceso restringido], [Crítico],
+)
+
+Se evaluaron vulnerabilidades relacionadas con autenticación, validación de datos y control de acceso.
+
+#v(1em)
+
+== Pruebas del Proceso de Ticket
+
+=== Flujo del proceso
+
+#table(
+  columns: 3,
+  [*Paso*], [*Acción*], [*Resultado esperado*],
+  [1], [Seleccionar producto], [Carga correcta],
+  [2], [Ingresar cantidad], [Validación correcta],
+  [3], [Confirmar venta], [Registro en BD],
+  [4], [Generar ticket], [Ticket completo],
+)
+
+=== Métricas
+
+#table(
+  columns: 2,
+  [*Métrica*], [*Valor esperado*],
+  [Tiempo], [< 30 segundos],
+  [Errores], [< 5%],
+  [Claridad], [Alta],
+)
+
+#v(1em)
+
+== Pruebas Alfa
+
+#table(
+  columns: 3,
+  [*Caso*], [*Entrada*], [*Resultado esperado*],
+  [Registro sin precio], [NULL], [Error controlado],
+  [Falla BD], [Desconexión], [Mensaje sin crash],
+  [Cantidad negativa], [-5], [Rechazo],
+)
+
+#v(1em)
+
+== Pruebas Beta
+
+#table(
+  columns: 2,
+  [*Actividad*], [*Resultado esperado*],
+  [Registro productos], [Correcto],
+  [Ventas], [Sin errores],
+  [Tickets], [Comprensibles],
+)
+
+#v(1em)
+
+== Pruebas de Aceptación
+
+#table(
+  columns: 3,
+  [*Entrada*], [*Proceso*], [*Resultado*],
+  [Tela algodón, 3 unidades], [Venta + ticket], [Correcto],
+)
+
+#v(1em)
+
+== Evaluación de Vulnerabilidades (Tipo CVSS)
+
+#table(
+  columns: 4,
+  [*Vulnerabilidad*], [*Impacto*], [*Probabilidad*], [*Nivel*],
+  [SQL Injection], [Alto], [Alta], [Crítico],
+  [Fuerza bruta], [Medio], [Alta], [Alto],
+  [Manipulación de datos], [Alto], [Media], [Alto],
+)
+
+#v(1em)
+
+== KPIs de Calidad
+
+#table(
+  columns: 2,
+  [*Indicador*], [*Valor objetivo*],
+  [Tasa de éxito], [95%],
+  [Tiempo de respuesta], [< 2s],
+  [Errores], [< 5%],
+)
+
+#v(1em)
+
+== Conclusión
+
+El sistema cumple con los requisitos funcionales y presenta un nivel adecuado de calidad. Sin embargo, se identifican vulnerabilidades críticas que deben ser mitigadas para garantizar la seguridad del sistema.
+
 == Organizador Gráfico: Proceso de Evaluación de Usabilidad
 
 A continuación, se presenta un organizador gráfico estructurado sobre el ciclo de vida de las pruebas de usabilidad y sus métricas, aplicado directamente al Sistema de Gestión de Telas:

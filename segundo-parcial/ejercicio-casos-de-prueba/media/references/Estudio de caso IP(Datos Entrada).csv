@@ -1,0 +1,49 @@
+﻿Detalle de Localizaciones,,,,,,,,,,,,,,,,
+Almacén,Localización,Recurso,Lote,Grado,Cantidad en localización,Unidad de medida estandar,Clase,Subclase,Cantidad en la ult recepción,UM de la última recepción,Factor de potencia,Fecha última recepción,Estatus del producto,Campo 1,Campo 2,Campo3
+AA,PISO,0000001,LF2501230t1,,100,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+AA,PISO,0000002,LF2501231t1,,100,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+AA,PISO,0000003,LF2501232t1,,100,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+AA,PISO,0000004,LF2501233t1,,100,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+AA,PISO,0000005,LF2501234t1,,100,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+BB,A11,0000001,LF2501235t2,,100,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+BB,A12,0000033,LF2501232t2,,100,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+BB,A13,0000004,LF2501233t1,,100,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+AN,A14,0000005,LF2501234t2,,100,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+AA,PISO,0000004,LF2501233t3,,10,CJ,PT,01,1000,CJ,,1251130,OK,,,0
+,,,,,,,,,,,,,,,,
+Detalle de unidades,,,,,,,,,,,,,,,,
+Número de Unidad,Almacén,Localizacion,Número de Recurso,Lote,Cantidad,Unidad de Medida,Fecha de fábricación,,,,,,,,,
+1,AA,PISO,0000001,LF2501230t1,100,CJ,,,,,,,,,,
+2,AA,PISO,0000002,LF2501231t1,100,CJ,,,,,,,,,,
+3,AA,PISO,0000003,LF2501232t1,100,CJ,,,,,,,,,,
+4,AA,PISO,0000004,LF2501233t1,100,CJ,,,,,,,,,,
+5,AA,PISO1,0000005,LF2501234t1,100,CJ,,,,,,,,,,
+6,BB,A11,0000001,LF2501235t2,100,CJ,,,,,,,,,,
+7,BB,A12,0000033,LF2501232t2,100,CJ,,,,,,,,,,
+8,BB,A13,0000004,LF2501233t1,100,CJ,,,,,,,,,,
+9,AN,A14,0000005,LF2501234t2,100,CJ,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+Lista de almacenes,,,,,,,,,,,,,,,,
+Almacén,Descripción,Zona,Cantidad de posiciones,Rotación de inventario,ultimo inv físico,Alto máximo,Profundidad máxima,Ancho máximo,Peso total máximo por posición,Case Pick Repl Point UM,direc,direc,direc,direc,direc,Campo1
+AA,Almacén 1,,,,,,,,,,,,,,,01
+AB,Almacén 2,,,,,,,,,,,,,,,02
+AC,Almacén 3,,,,,,,,,,,,,,,03
+AD,Almacén 4,,,,,,,,,,,,,,,04
+BA,Almacén 5,,,,,,,,,,,,,,,05
+BB,Almacén 6,,,,,,,,,,,,,,,06
+CC,Almacén 7,,,,,,,,,,,,,,,07
+CZ,Almacén 8,,,,,,,,,,,,,,,08
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+Catálogo de Recursos,,,,,,,,,,,,,,,,
+Clave de Recurso,Descripción,Unidad de Medida,Bandera,Código de Politica,Programado,Días de entrega,Inventariable,Clase,Subclase,Campo 1,,,,,,
+0000001,Java 1,CJ,1,,,30,S,PT,,1234,,,,,,
+0000002,Desarrollo de Sistemas 1,CJ,1,,,30,S,PT,,2222,,,,,,
+0000003,Estructura de Datos I,CJ,1,,,30,S,PT,,3333,,,,,,
+0000004,Python Avanzado,CJ,1,,,30,S,PT,,4444,,,,,,
+0000005,Administración de Proyectos,CJ,1,,,30,S,PT,,5555,,,,,,
+0000007,Ingeniería de la Economía,CJ,1,,,30,S,PT,,,,,,,,
+0000008,Métodos Numéricos 1,CJ,0,,,99,S,PT,,L007,,,,,,
+0000033,Ingeniería de Datos,CJ,1,,,30,S,PT,,3000,,,,,,
